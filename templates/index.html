@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta charset="UTF-8">
+    <title>The Greatest Avatar Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</head>
+<body>
+
+<div class="container">
+    <h1>Create Your Avatar</h1>
+    <form id="avatarForm">
+        <div class="mui-textfield">
+            <input type="text" id="name" name="name" placeholder="Enter your name" value="John" />
+        </div>
+        <div class="color-picker-container">
+            <label for="bg_color">Background Color</label>
+            <input type="color" id="bg_color" name="bg_color" value="#3498db" />
+        </div>
+        <div class="color-picker-container">
+            <label for="text_color">Text Color</label>
+            <input type="color" id="text_color" name="text_color" value="#ffffff" />
+        </div>
+        <div class="color-picker-container">
+            <label for="gradient_color">Gradient Color</label>
+            <input type="color" id="gradient_color" name="gradient_color" value="#e74c3c" />
+        </div>
+        <div class="shape-picker-container">
+            <label for="shape">Shape</label>
+            <select id="shape" name="shape">
+                <option value="circle">Circle</option>
+                <option value="square">Square</option>
+                <option value="rounded">Rounded</option>
+            </select>
+        </div>
+        <div class="icon-picker-container">
+            <label for="icon_select">Icon</label>
+            <select id="icon_select" name="icon_select">
+                <option value="">None</option>
+                <option value="star">star</option>
+                <option value="favorite">favorite</option>
+                <option value="check">check</option>
+            </select>
+        </div>
+        <div class="font-picker-container">
+            <label for="font_style">Font Style</label>
+            <select id="font_style" name="font_style">
+                <option value="Roboto">Roboto</option>
+                <option value="Courier Prime">Courier Prime (Monospace)</option>
+                <option value="PT Serif">PT Serif (Serif)</option>
+                <option value="Fira Code">Fira Code (Console)</option>
+            </select>
+        </div>
+        <div class="font-picker-container">
+            <label for="font_weight">Font Weight</label>
+            <select id="font_weight" name="font_weight">
+                <option value="400">Regular</option>
+                <option value="700">Bold</option>
+            </select>
+        </div>
+        <div class="font-picker-container">
+            <label for="font_size">Font Size</label>
+            <input type="range" id="font_size" name="font_size" min="24" max="48" value="36" />
+            <span id="fontSizeValue">36px</span>
+        </div>
+
+        <div class="file-picker-container">
+            <label for="file-input">Upload Image</label>
+            <input type="file" id="file-input" accept="image/*">
+        </div>
+
+        <div class="overlay-opacity-container">
+            <label for="overlay-opacity">Overlay Opacity</label>
+            <input type="range" id="overlay-opacity" name="overlay-opacity" min="0" max="1" step="0.1" value="0.5">
+            <span id="overlayOpacityValue">0.5</span>
+        </div>
+
+        <div class="button-group">
+            <button type="submit" class="mui-btn mui-btn--raised">Generate Avatar</button>
+            <button type="button" class="mui-btn mui-btn--raised" id="clearForm">Clear</button>
+        </div>
+    </form>
+
+    <div class="avatar-preview-container">
+        <div id="avatarPreview" class="avatar-preview circle">
+            <img id="uploadedImage" style="display:none;">
+            <div id="overlay" class="overlay" style="display:none;"></div>
+            <div id="avatarText">JD</div>
+            <div id="icon" class="icon-on-avatar"></div>
+        </div>
+    </div>
+
+    <button class="mui-btn mui-btn--raised" id="downloadAvatar" style="margin-top: 20px;">Download Avatar</button>
+    <button class="mui-btn mui-btn--raised" id="randomizeAvatar" style="margin-top: 20px;">Randomize Styles</button>
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
